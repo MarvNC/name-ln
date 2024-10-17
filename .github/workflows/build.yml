@@ -20,6 +20,9 @@ jobs:
       - name: Set up Deno
         uses: denoland/setup-deno@v2
 
+      - name: Install
+        run: deno install
+
       - name: Build
         run: deno run build
 
