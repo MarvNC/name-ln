@@ -3,9 +3,13 @@
   "specifiers": {
     "jsr:@libs/typing@3": "3.1.0",
     "jsr:@libs/xml@*": "6.0.0",
+    "jsr:@quentinadam/assert@~0.1.7": "0.1.7",
+    "jsr:@quentinadam/uint8array-extension@~0.1.4": "0.1.4",
+    "jsr:@quentinadam/zip@*": "0.1.1",
     "jsr:@std/assert@1": "1.0.6",
     "jsr:@std/internal@^1.0.4": "1.0.4",
-    "jsr:@zip-js/zip-js@*": "2.7.52"
+    "jsr:@zip-js/zip-js@*": "2.7.52",
+    "npm:@types/node@*": "22.5.4"
   },
   "jsr": {
     "@libs/typing@3.1.0": {
@@ -15,6 +19,22 @@
       "integrity": "d629f461bc10598de9ad55470f3b7c9bf1707cc2b90be9603a129259b8e5d0a5",
       "dependencies": [
         "jsr:@libs/typing"
+      ]
+    },
+    "@quentinadam/assert@0.1.7": {
+      "integrity": "0246fb7fd3aa7b286535db40feefdafc588272d3f287b4eb995c96263ab6dfca"
+    },
+    "@quentinadam/uint8array-extension@0.1.4": {
+      "integrity": "61ec4ddb63a68c78016682198e6cc942134765bbc1b437a8f5d360256099af49",
+      "dependencies": [
+        "jsr:@quentinadam/assert"
+      ]
+    },
+    "@quentinadam/zip@0.1.1": {
+      "integrity": "11e88c3921f3eef39202190cda83f0a356345a66db5e8e88f2fd303d9e73050f",
+      "dependencies": [
+        "jsr:@quentinadam/assert",
+        "jsr:@quentinadam/uint8array-extension"
       ]
     },
     "@std/assert@1.0.6": {
@@ -30,15 +50,39 @@
       "integrity": "c8d9fd23b1965fdf58071e886b3b8dbd32a68f780ccb60cb256cfc41b4423e32"
     }
   },
+  "npm": {
+    "@types/node@22.5.4": {
+      "integrity": "sha512-FDuKUJQm/ju9fT/SeX/6+gBzoPzlVCzfzmGkwKvRHQVxi4BntVbyIwf6a4Xn62mrvndLiml6z/UBXIdEVjQLXg==",
+      "dependencies": [
+        "undici-types"
+      ]
+    },
+    "undici-types@6.19.8": {
+      "integrity": "sha512-ve2KP6f/JnbPBFyobGHuerC9g1FYGn/F8n1LWTwNxCEzd6IfqTwUQcNXgEtmmQ6DlRrC1hrSrBnCZPokRrDHjw=="
+    }
+  },
   "redirects": {
     "https://deno.land/std/cli/parse_args.ts": "https://deno.land/std@0.224.0/cli/parse_args.ts",
     "https://deno.land/std/flags/mod.ts": "https://deno.land/std@0.224.0/flags/mod.ts",
+    "https://deno.land/x/jszip/mod.ts": "https://deno.land/x/jszip@0.11.0/mod.ts",
     "https://deno.land/x/streaming_zip/read.ts": "https://deno.land/x/streaming_zip@v1.1.0/read.ts"
   },
   "remote": {
     "https://deno.land/std@0.106.0/fmt/colors.ts": "d2f8355f00a74404668fc5a1e4a92983ce1a9b0a6ac1d40efbd681cb8f519586",
     "https://deno.land/std@0.106.0/testing/_diff.ts": "5d3693155f561d1a5443ac751ac70aab9f5d67b4819a621d4b96b8a1a1c89620",
     "https://deno.land/std@0.106.0/testing/asserts.ts": "5f3a0fddb15a9733e44737e2d52be8e696bb79bc4e3830a9f246c5b8f3b29b31",
+    "https://deno.land/std@0.116.0/_util/assert.ts": "2f868145a042a11d5ad0a3c748dcf580add8a0dbc0e876eaa0026303a5488f58",
+    "https://deno.land/std@0.116.0/_util/os.ts": "dfb186cc4e968c770ab6cc3288bd65f4871be03b93beecae57d657232ecffcac",
+    "https://deno.land/std@0.116.0/fs/walk.ts": "31464d75099aa3fc7764212576a8772dfabb2692783e6eabb910f874a26eac54",
+    "https://deno.land/std@0.116.0/path/_constants.ts": "1247fee4a79b70c89f23499691ef169b41b6ccf01887a0abd131009c5581b853",
+    "https://deno.land/std@0.116.0/path/_interface.ts": "1fa73b02aaa24867e481a48492b44f2598cd9dfa513c7b34001437007d3642e4",
+    "https://deno.land/std@0.116.0/path/_util.ts": "2e06a3b9e79beaf62687196bd4b60a4c391d862cfa007a20fc3a39f778ba073b",
+    "https://deno.land/std@0.116.0/path/common.ts": "f41a38a0719a1e85aa11c6ba3bea5e37c15dd009d705bd8873f94c833568cbc4",
+    "https://deno.land/std@0.116.0/path/glob.ts": "ea87985765b977cc284b92771003b2070c440e0807c90e1eb0ff3e095911a820",
+    "https://deno.land/std@0.116.0/path/mod.ts": "4465dc494f271b02569edbb4a18d727063b5dbd6ed84283ff906260970a15d12",
+    "https://deno.land/std@0.116.0/path/posix.ts": "34349174b9cd121625a2810837a82dd8b986bbaaad5ade690d1de75bbb4555b2",
+    "https://deno.land/std@0.116.0/path/separator.ts": "8fdcf289b1b76fd726a508f57d3370ca029ae6976fcde5044007f062e643ff1c",
+    "https://deno.land/std@0.116.0/path/win32.ts": "11549e8c6df8307a8efcfa47ad7b2a75da743eac7d4c89c9723a944661c8bd2e",
     "https://deno.land/std@0.133.0/_deno_unstable.ts": "23a1a36928f1b6d3b0170aaa67de09af12aa998525f608ff7331b9fb364cbde6",
     "https://deno.land/std@0.133.0/_util/assert.ts": "e94f2eb37cebd7f199952e242c77654e43333c1ac4c5c700e929ea3aa5489f74",
     "https://deno.land/std@0.133.0/_util/os.ts": "49b92edea1e82ba295ec946de8ffd956ed123e2948d9bd1d3e901b04e4307617",
@@ -74,6 +118,8 @@
     "https://deno.land/std@0.224.0/cli/parse_args.ts": "5250832fb7c544d9111e8a41ad272c016f5a53f975ef84d5a9fe5fcb70566ece",
     "https://deno.land/std@0.224.0/flags/mod.ts": "88553267f34519c8982212185339efdb2d2e62c159ec558f47eb50c8952a6be3",
     "https://deno.land/x/deferred_promise@v1.0.0/mod.ts": "99088ce7d6c13e32a9914384b56d7639809ca1c37937999dfcb3ddc56253160b",
+    "https://deno.land/x/jszip@0.11.0/mod.ts": "5661ddc18e9ac9c07e3c5d2483bc912a7022b6af0d784bb7b05035973e640ba1",
+    "https://deno.land/x/jszip@0.11.0/types.ts": "1528d1279fbb64dd118c371331c641a3a5eff2b594336fb38a7659cf4c53b2d1",
     "https://deno.land/x/stream_slicing@v1.1.0/_support.deno.ts": "4db98ae6281fa5f654a96fef791c88dedd2e0bd1cbe64cd4cc3963da7f4c5fec",
     "https://deno.land/x/stream_slicing@v1.1.0/deno_helpers.ts": "3e570293113d1b8d6e61d8b1e5ee7163e850ef0f5f06f850e7ed0dd956c37fd9",
     "https://deno.land/x/stream_slicing@v1.1.0/exact_bytes_transform_stream.ts": "bf915933dbd0a57d45c2508b68e723b717c5d02df83fb6f9c38720da9f17c82a",
@@ -85,7 +131,9 @@
     "https://deno.land/x/zip@v1.2.5/decompress.ts": "0bce3d453726f686274fab3f6c19b72b5e74223a00d89c176b1de49a5dd5528d",
     "https://deno.land/x/zip@v1.2.5/deps.ts": "79548387594b3ae1efaaa870b5a507c4d6bedede13dbd5d4ad42f6cda0aeef86",
     "https://deno.land/x/zip@v1.2.5/mod.ts": "28eecbc3e1e5adf564f4aa465e64268713a05653104bacdcb04561533f8caf57",
-    "https://deno.land/x/zip@v1.2.5/utils.ts": "43c323f2b79f9db1976c5739bbb1f9cced20e8077ca7e7e703f9d01d4330bd9d"
+    "https://deno.land/x/zip@v1.2.5/utils.ts": "43c323f2b79f9db1976c5739bbb1f9cced20e8077ca7e7e703f9d01d4330bd9d",
+    "https://esm.sh/jszip@3.7.1": "f3872a819b015715edb05f81d973b5cd05d3d213d8eb28293ca5471fe7a71773",
+    "https://esm.sh/v135/jszip@3.7.1/denonext/jszip.mjs": "d31d7f9e0de9c6db3c07ca93f7301b756273d4dccb41b600461978fc313504c9"
   },
   "workspace": {
     "dependencies": [

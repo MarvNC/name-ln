@@ -1,28 +1,21 @@
-import { BlobReader, TextWriter, ZipReader } from 'jsr:@zip-js/zip-js';
+import { readZip } from 'https://deno.land/x/jszip/mod.ts';
 import { parse } from 'jsr:@libs/xml/parse';
 import type { BookData } from '../types.ts';
 
 export async function parseEpub(epubPath: string): Promise<BookData> {
-  // Read zip file and look for .opf file
-  // Read .opf file with xml parser and extract metadata
-  // Return BookData object
-
-  const zipData = await Deno.readFile(epubPath);
-
-  const zipFileReader = new BlobReader(new Blob([zipData]));
-  const zipReader = new ZipReader(zipFileReader);
-  const entries = await zipReader.getEntries();
+  const zip = await readZip(epubPath);
 
   // find .opf file
-  const opfFile = entries.find((entry) => entry.filename.endsWith('.opf'));
+  // const opfFile = zip.file((file) => file.name.endsWith('.opf'));
+  const files = zip.files();
+  const [opfName, opfFile] =
+    Object.entries(files).find(([name, _]) => name.endsWith('.opf')) || [];
 
-  if (!opfFile) {
+  if (!opfFile || !opfName) {
     throw new Error('No .opf file found in epub: ' + epubPath);
   }
 
-  // read .opf file
-  console.log('Reading .opf file:', opfFile.filename);
-  const opfData = await opfFile.getData!(new TextWriter());
+  const opfData = await opfFile.async('string');
 
   const parsed = parse(opfData);
   // @ts-ignore - it's fine
