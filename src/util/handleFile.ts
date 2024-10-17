@@ -1,16 +1,24 @@
-import { generateName } from "../util/name.ts";
-import { parseEpub } from "../util/parseEpub.ts";
-import type { EpubFileEntry } from "../types.ts";
+import { generateName } from '../util/name.ts';
+import { parseEpub } from '../util/parseEpub.ts';
+import type { EpubFileEntry } from '../types.ts';
 
 export async function handleFile(
   fileEntry: EpubFileEntry,
   retailer?: string,
-  extra?: string) {
+  extra?: string
+) {
   const epubPath = fileEntry.directory
     ? `${fileEntry.directory}/${fileEntry.file.name}`
     : fileEntry.file.name;
-  const bookData = await parseEpub(epubPath);
-  // Rename file
+  let bookData;
+  try {
+    bookData = await parseEpub(epubPath);
+  } catch (error) {
+    console.error('Error parsing epub:', epubPath);
+    console.error(error);
+    return;
+  }
+
   bookData.retailer ||= retailer;
   bookData.extra ||= extra;
   const newName = generateName(bookData);

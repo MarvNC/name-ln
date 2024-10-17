@@ -1,4 +1,4 @@
-import type { BookData } from "../types.ts";
+import type { BookData } from '../types.ts';
 
 export function generateName(bookData: BookData): string {
   // [Author] YYYYMMDD - v01 Title (Publisher - Label) (Retailer) [Extra Information] {Revision}
