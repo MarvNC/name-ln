@@ -35,7 +35,7 @@ jobs:
         uses: nukdokplex/autohotkey-build@v0.1
         with:
           version: v1.1.22.01
-          in: 'src\gui.ahk'
+          in: 'src'
           out: dist
 
       - name: Create Release

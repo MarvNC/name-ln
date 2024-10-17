@@ -3,7 +3,7 @@
     "dev": "deno run --watch src/main.ts",
     "start": "deno run src/main.ts",
     "build": "deno compile --allow-read --allow-write --output dist/name-ln src/main.ts",
-    "build:windows": "deno compile --allow-read --allow-write --target x86_64-pc-windows-msvc --output dist/name-ln-windows src/main.ts",
+    "build:windows": "deno compile --allow-read --allow-write --target x86_64-pc-windows-msvc --output dist/name-ln src/main.ts",
     "build:macos:x86_64": "deno compile --allow-read --allow-write --target x86_64-apple-darwin --output dist/name-ln-macos-x86_64 src/main.ts",
     "build:macos:arm64": "deno compile --allow-read --allow-write --target aarch64-apple-darwin --output dist/name-ln-macos-arm64 src/main.ts",
     "build:linux:x86_64": "deno compile --allow-read --allow-write --target x86_64-unknown-linux-gnu --output dist/name-ln-linux-x86_64 src/main.ts",
