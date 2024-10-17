@@ -1,5 +1,7 @@
 import { parseArgs } from 'https://deno.land/std/cli/parse_args.ts';
 import { parseEpub } from './parseEpub.ts';
+import { generateName } from './name.ts';
+import type { EpubFileEntry } from './types.ts';
 
 if (import.meta.main) {
   // read args
@@ -17,7 +19,7 @@ if (import.meta.main) {
   const extra = parsedArgs.extra || parsedArgs.e;
   const filesOrDirs = parsedArgs._;
 
-  const epubFilesToHandle: string[] = [];
+  const epubFilesToHandle: EpubFileEntry[] = [];
 
   for (const fileOrDir of filesOrDirs) {
     if (typeof fileOrDir !== 'string') {
@@ -26,40 +28,65 @@ if (import.meta.main) {
     }
 
     // Check if file or dir
+    console.log('Checking:', fileOrDir);
     const fileInfo = await Deno.lstat(fileOrDir);
     if (fileInfo.isDirectory) {
       // Read directory
       const dir = Deno.readDir(fileOrDir);
-      const dirEntries = [];
       for await (const entry of dir) {
-        dirEntries.push(entry);
-      }
-      // Collect all epubs in directory
-      const epubFiles = dirEntries.filter((file) => isEpub(file.name));
-      for (const file of epubFiles) {
-        epubFilesToHandle.push(file.name);
+        if (isEpub(entry.name)) {
+          epubFilesToHandle.push({ directory: fileOrDir, file: entry });
+        }
       }
     } else {
       if (!isEpub(fileOrDir)) {
         console.log('Not an epub file:', fileOrDir);
         continue;
       }
-      epubFilesToHandle.push(fileOrDir);
+      epubFilesToHandle.push({
+        directory: '',
+        file: {
+          name: fileOrDir,
+          isFile: true,
+          isDirectory: false,
+          isSymlink: false,
+        },
+      });
     }
   }
 
   console.log(`Processing ${epubFilesToHandle.length} epub files...`);
 
   // Handle all collected epub files
-  for (const epubFile of epubFilesToHandle) {
-    handleFile(epubFile, retailer, extra);
+  for (const fileEntry of epubFilesToHandle) {
+    await handleFile(fileEntry, retailer, extra);
   }
+
+  // console.log('Done!');
+  // Deno.exit(0);
 }
 
 function isEpub(filepath: string): boolean {
   return filepath.endsWith('.epub');
 }
 
-function handleFile(filepath: string, retailer?: string, extra?: string) {
-  const bookData = parseEpub(filepath);
+async function handleFile(
+  fileEntry: EpubFileEntry,
+  retailer?: string,
+  extra?: string
+) {
+  const epubPath = fileEntry.directory
+    ? `${fileEntry.directory}/${fileEntry.file.name}`
+    : fileEntry.file.name;
+  const bookData = await parseEpub(epubPath);
+  // Rename file
+  bookData.retailer ||= retailer;
+  bookData.extra ||= extra;
+  const newName = generateName(bookData);
+  console.log('Renaming:', fileEntry.file.name, '->', newName);
+  const newPath = fileEntry.directory
+    ? `${fileEntry.directory}/${newName}.epub`
+    : `${newName}.epub`;
+
+  await Deno.rename(epubPath, newPath);
 }

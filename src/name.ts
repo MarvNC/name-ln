@@ -10,7 +10,7 @@ export function generateName(bookData: BookData): string {
   // Remove spaces and full-width spaces from author name
   const cleanAuthor = bookData.author.replace(/[ 　]/g, '');
 
-  return `[${cleanAuthor}] ${dateString} - v01 ${bookData.title} (${
+  return `[${cleanAuthor}] ${dateString} - ${bookData.title} (${
     bookData.publisher
   }${bookData.label ? ` - ${bookData.label}` : ''})${
     bookData.retailer ? ` (${bookData.retailer})` : ''

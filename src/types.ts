@@ -7,3 +7,8 @@ export type BookData = {
   retailer?: string;
   extra?: string;
 };
+
+export type EpubFileEntry = {
+  directory: string;
+  file: Deno.DirEntry;
+};
