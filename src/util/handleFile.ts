@@ -22,7 +22,7 @@ export async function handleFile(
   bookData.retailer ||= retailer;
   bookData.extra ||= extra;
   const newName = generateName(bookData);
-  console.log('Renaming:', fileEntry.file.name, '->', newName);
+  console.log('Renaming:', newName);
   const newPath = fileEntry.directory
     ? `${fileEntry.directory}/${newName}.epub`
     : `${newName}.epub`;
