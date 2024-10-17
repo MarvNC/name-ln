@@ -23,11 +23,11 @@ It helps maintain organized collections by ensuring:
 
 <!-- https://github.com/MarvNC/name-ln/releases/download/v1.2.0/gui.exe -->
 
-- Download the [latest release of the GUI](https://github.com/MarvNC/name-ln/releases/latest/download/gui.exe) and the [latest release of the CLI](https://github.com/MarvNC/name-ln/releases/latest/download/name-ln.exe).
+- Download the [Windows .exe GUI](https://github.com/MarvNC/name-ln/releases/download/v1.2.0/gui.exe) and the [latest release of the CLI](https://github.com/MarvNC/name-ln/releases/latest/download/name-ln.exe).
 - Ensure that `gui.exe` and `name-ln.exe` are in the same directory and that you don't change the name of `name-ln.exe`.
 - Open `gui.exe` and drag and drop files or directories onto the window, then fill out appropriate fields if necessary and hit the rename button to rename.
 
-### CLI
+### CLI (all platforms)
 
 ```bash
 <path-to-binary> --allow-read --allow-write main.ts [options] <files or directories>
