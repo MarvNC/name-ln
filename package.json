@@ -1,6 +1,6 @@
 {
   "name": "name-ln",
-  "version": "1.2.2",
+  "version": "1.2.3",
   "description": "A CLI utility that implements the [Light Novel Naming Scheme](https://github.com/MarvNC/light-novel-naming-scheme) to standardize the naming of light novel files and directories.",
   "author": "MarvNC"
 }
