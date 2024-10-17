@@ -1,6 +1,6 @@
 import { BlobReader, TextWriter, ZipReader } from 'jsr:@zip-js/zip-js';
 import { parse } from 'jsr:@libs/xml/parse';
-import type { BookData } from './types.ts';
+import type { BookData } from '../types.ts';
 
 export async function parseEpub(epubPath: string): Promise<BookData> {
   // Read zip file and look for .opf file

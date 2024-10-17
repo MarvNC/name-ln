@@ -1,7 +1,7 @@
 import { parseArgs } from 'https://deno.land/std/cli/parse_args.ts';
-import { parseEpub } from './parseEpub.ts';
-import { generateName } from './name.ts';
 import type { EpubFileEntry } from './types.ts';
+import { isEpub } from './util/isEpub.ts';
+import { handleFile } from './util/handleFile.ts';
 
 if (import.meta.main) {
   // read args
@@ -62,31 +62,6 @@ if (import.meta.main) {
     await handleFile(fileEntry, retailer, extra);
   }
 
-  // console.log('Done!');
-  // Deno.exit(0);
-}
-
-function isEpub(filepath: string): boolean {
-  return filepath.endsWith('.epub');
-}
-
-async function handleFile(
-  fileEntry: EpubFileEntry,
-  retailer?: string,
-  extra?: string
-) {
-  const epubPath = fileEntry.directory
-    ? `${fileEntry.directory}/${fileEntry.file.name}`
-    : fileEntry.file.name;
-  const bookData = await parseEpub(epubPath);
-  // Rename file
-  bookData.retailer ||= retailer;
-  bookData.extra ||= extra;
-  const newName = generateName(bookData);
-  console.log('Renaming:', fileEntry.file.name, '->', newName);
-  const newPath = fileEntry.directory
-    ? `${fileEntry.directory}/${newName}.epub`
-    : `${newName}.epub`;
-
-  await Deno.rename(epubPath, newPath);
+  console.log('Done!');
+  Deno.exit(0);
 }

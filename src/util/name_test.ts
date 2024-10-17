@@ -1,6 +1,6 @@
 import { assertEquals } from 'https://deno.land/std@0.106.0/testing/asserts.ts';
 import { generateName } from './name.ts';
-import { type BookData } from './types.ts';
+import { type BookData } from '../types.ts';
 
 Deno.test('generateName test with string date', () => {
   const bookData: BookData = {
