@@ -10,7 +10,7 @@ permissions:
   contents: write
 
 jobs:
-  test:
+  build-release:
     runs-on: windows-latest
 
     steps:
@@ -34,8 +34,8 @@ jobs:
       - name: Build with AHK
         uses: nukdokplex/autohotkey-build@v0.1
         with:
-          compression: upx
-          in: 'src/gui.ahk'
+          version: v1.1.22.01
+          in: 'src\gui.ahk'
           out: dist
 
       - name: Create Release
