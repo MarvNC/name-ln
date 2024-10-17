@@ -3,15 +3,15 @@ import { processEpubFiles } from './processEpubFiles.ts';
 
 function printHelp() {
   console.log(`
-Usage: deno run --allow-read --allow-write main.ts [options] <files or directories>
+Usage: ./name-ln.exe --allow-read --allow-write main.ts [options] <files or directories>
 
 Options:
   --retailer, -r  Specify the retailer name
   --extra, -e     Specify extra information
 
 Examples:
-  deno run --allow-read --allow-write main.ts --retailer Bookwalker --extra Promo file1.epub file2.epub
-  deno run --allow-read --allow-write main.ts -r Bookwalker -e Promo dir1 dir2
+  ./name-ln.exe --allow-read --allow-write main.ts --retailer Bookwalker --extra Promo file1.epub file2.epub
+  ./name-ln.exe --allow-read --allow-write main.ts -r Bookwalker -e Promo dir1 dir2
   `);
 }
 
