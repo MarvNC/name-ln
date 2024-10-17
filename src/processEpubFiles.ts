@@ -1,7 +1,7 @@
-import { dirname } from 'https://deno.land/std@0.116.0/path/win32.ts';
 import type { EpubFileEntry } from './types.ts';
 import { handleFile } from './util/handleFile.ts';
 import { isEpub } from './util/isEpub.ts';
+import { basename, dirname } from 'https://deno.land/std@0.116.0/path/mod.ts';
 
 export async function processEpubFiles(
   filesOrDirs: (string | number)[],
@@ -35,10 +35,12 @@ export async function processEpubFiles(
       }
       // get directory
       const dirPath = dirname(Deno.realPathSync(fileOrDir));
+      const fileName = basename(fileOrDir);
+
       epubFilesToHandle.push({
         directory: dirPath,
         file: {
-          name: fileOrDir,
+          name: fileName,
           isFile: true,
           isDirectory: false,
           isSymlink: false,

@@ -8,6 +8,10 @@ export async function handleFile(
   extra?: string
 ) {
   const epubPath = `${fileEntry.directory}/${fileEntry.file.name}`;
+
+  console.log('path:', epubPath);
+  console.log('name:', fileEntry.file.name);
+
   let bookData;
   try {
     bookData = await parseEpub(epubPath);
