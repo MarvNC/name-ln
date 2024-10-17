@@ -10,9 +10,17 @@ export function generateName(bookData: BookData): string {
   // Remove spaces and full-width spaces from author name
   const cleanAuthor = bookData.author?.replace(/[ 　]/g, '');
 
-  return `[${cleanAuthor}] ${dateString} - ${bookData.title} (${
+  const name = `[${cleanAuthor}] ${dateString} - ${bookData.title} (${
     bookData.publisher
   }${bookData.label ? ` - ${bookData.label}` : ''})${
     bookData.retailer ? ` (${bookData.retailer})` : ''
   }${bookData.extra ? ` [${bookData.extra}]` : ''}`;
+  return sanitize(name);
+}
+
+/**
+ * Remove characters that are not allowed in filenames
+ */
+function sanitize(name: string): string {
+  return name.replace(/[\/\\?%*:|"<>？％＊：｜＂＜＞]/g, '');
 }

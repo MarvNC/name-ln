@@ -24,7 +24,8 @@ export async function parseEpub(epubPath: string): Promise<BookData> {
     throw new Error('No metadata found in .opf file: ' + epubPath);
   }
   const title = metadata['dc:title']?.['#text'];
-  const author = metadata['dc:creator']?.['#text'];
+  const author =
+    metadata['dc:creator']?.['#text'] || metadata['dc:creator']?.[0]?.['#text'];
   const publisher = metadata['dc:publisher']?.['#text'];
   const dcDate = metadata['dc:date']?.['#text'];
   // @property === dcterms:modified
