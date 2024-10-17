@@ -24,7 +24,12 @@ jobs:
         run: deno install
 
       - name: Build
-        run: deno run build
+        run: |
+          deno run build:windows
+          deno run build:macos:x86_64
+          deno run build:macos:arm64
+          deno run build:linux:x86_64
+          deno run build:linux:arm64
 
       - name: Create Release
         uses: softprops/action-gh-release@v2
