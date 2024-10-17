@@ -1,4 +1,4 @@
-name: Deno CI
+name: Deno Test
 
 on:
   push:
