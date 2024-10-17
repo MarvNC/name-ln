@@ -1,6 +1,6 @@
 # Light Novel Namer
 
-A CLI utility that implements the [Light Novel Naming Scheme](https://github.com/MarvNC/light-novel-naming-scheme) to standardize the naming of light novel files and directories.
+A utility that implements the [Light Novel Naming Scheme](https://github.com/MarvNC/light-novel-naming-scheme) to standardize the naming of light novel files and directories.
 
 ## Purpose
 
@@ -20,8 +20,6 @@ It helps maintain organized collections by ensuring:
 ## Usage
 
 ### GUI (Windows)
-
-<!-- https://github.com/MarvNC/name-ln/releases/download/v1.2.0/gui.exe -->
 
 - Download the [Windows .exe GUI](https://github.com/MarvNC/name-ln/releases/download/v1.2.0/gui.exe) and the [latest release of the CLI](https://github.com/MarvNC/name-ln/releases/latest/download/name-ln.exe).
 - Ensure that `gui.exe` and `name-ln.exe` are in the same directory and that you don't change the name of `name-ln.exe`.
