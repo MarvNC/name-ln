@@ -29,6 +29,8 @@ It helps maintain organized collections by ensuring:
 
 ### CLI (all platforms)
 
+- Download the [latest release of the CLI from the releases page](https://github.com/MarvNC/name-ln/releases/latest) for your platform.
+
 ```bash
 <path-to-binary> --allow-read --allow-write main.ts [options] <files or directories>
 
