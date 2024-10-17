@@ -12,7 +12,7 @@ Deno.test('generateName test with string date', () => {
     retailer: 'Bookwalker',
   };
   const expected =
-    '[白石定規] 20241013 - v01 魔女の旅々２３ (SBクリエイティブ - ＧＡノベル) (Bookwalker)';
+    '[白石定規] 20241013 - 魔女の旅々２３ (SBクリエイティブ - ＧＡノベル) (Bookwalker)';
   const result = generateName(bookData);
   assertEquals(result, expected);
 });
@@ -27,7 +27,7 @@ Deno.test('generateName test with Date object', () => {
     retailer: 'Bookwalker',
   };
   const expected =
-    '[白石定規] 20241013 - v01 魔女の旅々２３ (SBクリエイティブ - ＧＡノベル) (Bookwalker)';
+    '[白石定規] 20241013 - 魔女の旅々２３ (SBクリエイティブ - ＧＡノベル) (Bookwalker)';
   const result = generateName(bookData);
   assertEquals(result, expected);
 });
@@ -43,7 +43,7 @@ Deno.test('generateName test with cleaned author string', () => {
     retailer: 'Bookwalker',
   };
   const expected =
-    '[大木戸いずみ] 20241015 - v01 歴史に残る悪女になるぞ ７　悪役令嬢になるほど王子の溺愛は加速するようです！【電子特典付き】 (KADOKAWA - ビーズログ文庫) (Bookwalker)';
+    '[大木戸いずみ] 20241015 - 歴史に残る悪女になるぞ ７　悪役令嬢になるほど王子の溺愛は加速するようです！【電子特典付き】 (KADOKAWA - ビーズログ文庫) (Bookwalker)';
   const result = generateName(bookData);
   assertEquals(result, expected);
 });

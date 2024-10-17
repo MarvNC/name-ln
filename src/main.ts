@@ -17,18 +17,13 @@ Examples:
   `);
 }
 
-if (import.meta.main) {
-  main();
-}
-
-async function main() {
-  // read args
+function parseArguments() {
   const args = Deno.args;
   if (args.length === 0) {
     printHelp();
     Deno.exit(1);
   }
-  // Args: retailer, extra, also shortened versions
+
   const parsedArgs = parseArgs(Deno.args, {
     string: ['retailer', 'extra'],
     alias: {
@@ -43,10 +38,28 @@ async function main() {
     Deno.exit(0);
   }
 
-  const retailer = parsedArgs.retailer;
-  const extra = parsedArgs.extra;
-  const filesOrDirs = parsedArgs._;
+  return {
+    retailer: parsedArgs.retailer,
+    extra: parsedArgs.extra,
+    filesOrDirs: parsedArgs._,
+  };
+}
 
+async function main() {
+  const { retailer, extra, filesOrDirs } = parseArguments();
+
+  await processEpubFiles(filesOrDirs, retailer, extra);
+}
+
+if (import.meta.main) {
+  main();
+}
+
+async function processEpubFiles(
+  filesOrDirs: (string | number)[],
+  retailer: string | undefined,
+  extra: string | undefined
+) {
   const epubFilesToHandle: EpubFileEntry[] = [];
 
   for (const fileOrDir of filesOrDirs) {
