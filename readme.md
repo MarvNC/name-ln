@@ -19,14 +19,24 @@ It helps maintain organized collections by ensuring:
 
 ## Usage
 
+### GUI (Windows)
+
+<!-- https://github.com/MarvNC/name-ln/releases/download/v1.2.0/gui.exe -->
+
+- Download the [latest release of the GUI](https://github.com/MarvNC/name-ln/releases/latest/download/gui.exe) and the [latest release of the CLI](https://github.com/MarvNC/name-ln/releases/latest/download/name-ln.exe).
+- Ensure that `gui.exe` and `name-ln.exe` are in the same directory and that you don't change the name of `name-ln.exe`.
+- Open `gui.exe` and drag and drop files or directories onto the window, then fill out appropriate fields if necessary and hit the rename button to rename.
+
+### CLI
+
 ```bash
-./name-ln.exe --allow-read --allow-write main.ts [options] <files or directories>
+<path-to-binary> --allow-read --allow-write main.ts [options] <files or directories>
 
 Options:
   --retailer, -r  Specify the retailer name
   --extra, -e     Specify extra information
 
 Examples:
-  ./name-ln.exe --allow-read --allow-write main.ts --retailer Bookwalker --extra Promo file1.epub file2.epub
-  ./name-ln.exe --allow-read --allow-write main.ts -r Bookwalker -e Promo dir1 dir2
+  <path-to-binary> --allow-read --allow-write main.ts --retailer Bookwalker --extra Promo file1.epub file2.epub
+  <path-to-binary> --allow-read --allow-write main.ts -r Bookwalker -e Promo dir1 dir2
 ```

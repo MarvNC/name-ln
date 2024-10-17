@@ -34,12 +34,12 @@ Rename:
 ; Build the command line argument
 command := "name-ln.exe"
 if (Retailer != "") {
-    command .= " --retailer """ Retailer """"
+    command .= " --retailer """ Retailer """" ; Quote the retailer input
 }
 if (Extra != "") {
-    command .= " --extra """ Extra """"
+    command .= " --extra """ Extra """" ; Quote the extra input
 }
-command .= " " FileInput
+command .= " """ FileInput """" ; Quote the file input
 
 ; Run the command
 Run, %ComSpec% /c %command%, , Hide
