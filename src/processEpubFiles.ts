@@ -1,3 +1,4 @@
+import { dirname } from 'https://deno.land/std@0.116.0/path/win32.ts';
 import type { EpubFileEntry } from './types.ts';
 import { handleFile } from './util/handleFile.ts';
 import { isEpub } from './util/isEpub.ts';
@@ -21,9 +22,10 @@ export async function processEpubFiles(
     if (fileInfo.isDirectory) {
       // Read directory
       const dir = Deno.readDir(fileOrDir);
+      const dirPath = Deno.realPathSync(fileOrDir);
       for await (const entry of dir) {
         if (isEpub(entry.name)) {
-          epubFilesToHandle.push({ directory: fileOrDir, file: entry });
+          epubFilesToHandle.push({ directory: dirPath, file: entry });
         }
       }
     } else {
@@ -31,8 +33,10 @@ export async function processEpubFiles(
         console.log('Not an epub file:', fileOrDir);
         continue;
       }
+      // get directory
+      const dirPath = dirname(Deno.realPathSync(fileOrDir));
       epubFilesToHandle.push({
-        directory: '',
+        directory: dirPath,
         file: {
           name: fileOrDir,
           isFile: true,

@@ -7,9 +7,7 @@ export async function handleFile(
   retailer?: string,
   extra?: string
 ) {
-  const epubPath = fileEntry.directory
-    ? `${fileEntry.directory}/${fileEntry.file.name}`
-    : fileEntry.file.name;
+  const epubPath = `${fileEntry.directory}/${fileEntry.file.name}`;
   let bookData;
   try {
     bookData = await parseEpub(epubPath);
@@ -23,9 +21,7 @@ export async function handleFile(
   bookData.extra ||= extra;
   const newName = generateName(bookData);
   console.log('Renaming:', newName);
-  const newPath = fileEntry.directory
-    ? `${fileEntry.directory}/${newName}.epub`
-    : `${newName}.epub`;
+  const newPath = `${fileEntry.directory}/${newName}.epub`;
 
   await Deno.rename(epubPath, newPath);
 }
